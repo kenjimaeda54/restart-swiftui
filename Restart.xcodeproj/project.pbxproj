@@ -15,6 +15,7 @@
 		81F2E7E82936B0A000E426BE /* success.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 81F2E7E62936B0A000E426BE /* success.m4a */; };
 		81F2E7ED2936B27F00E426BE /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F2E7EC2936B27F00E426BE /* OnboardingView.swift */; };
 		81F2E7EF2936B28800E426BE /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F2E7EE2936B28800E426BE /* HomeScreen.swift */; };
+		81F2E7F12936E7A200E426BE /* CircleGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F2E7F02936E7A200E426BE /* CircleGroupView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		81F2E7E92936B1E900E426BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		81F2E7EC2936B27F00E426BE /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		81F2E7EE2936B28800E426BE /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
+		81F2E7F02936E7A200E426BE /* CircleGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleGroupView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,7 +65,7 @@
 				81F2E7E92936B1E900E426BE /* Info.plist */,
 				81F2E7D62936B03C00E426BE /* RestartApp.swift */,
 				81F2E7EB2936B23F00E426BE /* Views */,
-				81F2E7EA2936B23400E426BE /* Screens */,
+				81F2E7EA2936B23400E426BE /* Components */,
 				81F2E7E42936B0A000E426BE /* Sounds */,
 				81F2E7DA2936B03D00E426BE /* Assets.xcassets */,
 				81F2E7DC2936B03D00E426BE /* Preview Content */,
@@ -88,11 +90,12 @@
 			path = Sounds;
 			sourceTree = "<group>";
 		};
-		81F2E7EA2936B23400E426BE /* Screens */ = {
+		81F2E7EA2936B23400E426BE /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				81F2E7F02936E7A200E426BE /* CircleGroupView.swift */,
 			);
-			path = Screens;
+			path = Components;
 			sourceTree = "<group>";
 		};
 		81F2E7EB2936B23F00E426BE /* Views */ = {
@@ -177,6 +180,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81F2E7F12936E7A200E426BE /* CircleGroupView.swift in Sources */,
 				81F2E7EF2936B28800E426BE /* HomeScreen.swift in Sources */,
 				81F2E7ED2936B27F00E426BE /* OnboardingView.swift in Sources */,
 				81F2E7D92936B03C00E426BE /* ContentView.swift in Sources */,

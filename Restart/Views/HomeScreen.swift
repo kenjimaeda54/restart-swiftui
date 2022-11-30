@@ -17,14 +17,35 @@ struct HomeScreen: View {
 	var body: some View {
 		
 		VStack(spacing: 20) {
+			Spacer()
 			
-			Text("HomeScreen")
-				.font(.largeTitle)
-				.foregroundColor(.black)
-			Button(action: handleAppStorage) {
-				Text("Restart")
-					.foregroundColor(.black)
+			ZStack {
+				CircleGroupView(color: .gray, opacity: 0.1)
+				Image("character-2")
+				.resizable()
+				.scaledToFit()
+				.padding( .horizontal,25)
+
+				
 			}
+						
+				Text("The time that leads to mastery is dependent on the intensity of our foucus")
+				.font(.system(.title2,design: .rounded))
+				.foregroundColor(Color.gray)
+				.multilineTextAlignment(.center)
+				.padding()
+      
+			Spacer()
+			Button(action: handleAppStorage) {
+				Image(systemName: "arrow.triangle.2.circlepath.circle.fill")
+					.font(.system(size: 20))
+					.foregroundColor(.white)
+				Text("Restart")
+				
+			}
+			.buttonStyle(.borderedProminent)
+			.buttonBorderShape(.capsule)
+			.controlSize(.large)
 			
 		}//: ZStack
 		
