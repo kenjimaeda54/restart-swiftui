@@ -9,6 +9,8 @@ import SwiftUI
 
 struct OnboardingView: View {
 	@AppStorage("onboarding") var onboardingView: Bool = true
+	@State var buttonWidth = UIScreen.main.bounds.width - 80
+	@State var buttonOffset: CGFloat = 0
 	
 	func handleAppStorage() {
 		onboardingView = false
@@ -61,11 +63,19 @@ struct OnboardingView: View {
 					//Spacer empurrar para final
 					HStack {
 						ZStack {
-							Circle()
+							Capsule() //capsule não circle,capsule e tipo backgorund
 								.fill(Color("ColorRed"))
+								.frame(width: buttonOffset + 80)
+								.padding(.vertical,4)
+							
 						}
 						Spacer()
 					}
+					
+					Text("Get Start")
+						.font(.system(size: 30))
+						.foregroundColor(.white)
+						.offset(x:20)
 					
 					HStack {
 						ZStack {
@@ -78,15 +88,34 @@ struct OnboardingView: View {
 								.font(.system(size: 25))
 								.foregroundColor(.white)
 						}
+						.offset(x: buttonOffset)
 						Spacer()
 					}
 					
 				} //Footer
 				.frame(height: 80,alignment: .center)
 				.padding(.horizontal,25)
-				.onTapGesture {
-					onboardingView = false
-				}
+				.gesture(
+				   DragGesture()
+						.onChanged { gesture  in
+							 
+							//buttonOffset e para garantir que butão não ultrapassar o
+							//tamanho do capsule
+							if gesture.translation.width > 0 && buttonOffset <= buttonWidth {
+								buttonOffset = gesture.translation.width
+							}
+							
+						}
+						.onEnded{ _ in
+							if buttonOffset > buttonWidth / 2 {
+								   buttonOffset = buttonWidth - 50
+									 handleAppStorage()
+							}else {
+								  buttonOffset = 0
+							}
+						}
+				)
+				
 				
 			}//VSTACK
 			

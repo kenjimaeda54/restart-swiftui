@@ -9,6 +9,8 @@ import SwiftUI
 
 struct HomeScreen: View {
 	@AppStorage("onboarding") var onboarding = false
+	//pegar o tamanho da tela
+
 	
 	func handleAppStorage() {
 		onboarding = true;
