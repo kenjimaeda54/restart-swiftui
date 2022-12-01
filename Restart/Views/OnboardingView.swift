@@ -9,8 +9,12 @@ import SwiftUI
 
 struct OnboardingView: View {
 	@AppStorage("onboarding") var onboardingView: Bool = true
-	@State var buttonWidth = UIScreen.main.bounds.width - 80
-	@State var buttonOffset: CGFloat = 0
+	@State var buttonWidth =  UIScreen.main.bounds.width - 50
+	@State var buttonOffesset: CGFloat = 0
+	@State var isAnimation = false
+	@State var imageOffesset: CGSize = .zero
+	@State var opacityIndicator = 1.0
+	@State var textTitle = "Share."
 	
 	func handleAppStorage() {
 		onboardingView = false
@@ -24,49 +28,100 @@ struct OnboardingView: View {
 			VStack(spacing:20) {
 				Spacer()
 				VStack {
-					  Text("Share")
+					Text(textTitle)
 						.foregroundColor(.white)
 						.fontWeight(.bold)
 						.font(.system(size: 45, design: .rounded))
-					  
-					 Text("""
-								 Its not how much we give but how much love we put into giving
-								""")
-					 .multilineTextAlignment(.center)
-					 .font(.title3)
-					 .foregroundColor(.white)
-					 .padding(.horizontal,45)
+						.transition(.opacity)
+						.id(textTitle) //isso e importante para swiftui tratar como
+							//views diferentes assim meu transition funciona
+					
+					Text("""
+ Its not how much we give but how much love we put into giving
+ """)
+					.multilineTextAlignment(.center)
+					.font(.title3)
+					.foregroundColor(.white)
+					.padding(.horizontal,45)
 					
 				}//HEADER
-			  
+				.opacity(isAnimation ? 1 : 0)
+				.offset(y: isAnimation ? 0 : -45)
+				.animation(.easeIn(duration: 1), value: isAnimation)
+				
 				
 				ZStack{
 					ZStack {
 						CircleGroupView(color: .white, opacity: 0.2)
-             Image("character-1")
+							.offset(x: imageOffesset.width * -1) //andar acontrario da imagem
+							.blur(radius: abs(imageOffesset.width / 5))
+							.animation(.easeOut(duration: 1), value: imageOffesset)
+						
+						Image("character-1")
 							.resizable()
 							.scaledToFit()
-							
+							.animation(.easeOut(duration: 1), value: isAnimation)
+							.rotationEffect(.degrees(Double(imageOffesset.width / 20)))
+							.offset(x: imageOffesset.width , y: 0) //sem ofeste a imagem nao anda
+							.gesture(
+								DragGesture()
+									.onChanged({ gestureEvent in
+										//valor absoluto,porque quando arrastar
+										//imagem para esquerda sera negativo
+										//entao com abs ficar positivo
+										if abs(imageOffesset.width) <= 150 {
+											imageOffesset = gestureEvent.translation
+									
+										}
+										
+										withAnimation(.linear(duration: 1)) {
+											opacityIndicator = 0;
+											textTitle = "Give."
+										}
+										
+									})
+								
+									.onEnded({ _ in
+										imageOffesset = .zero;
+																				
+										withAnimation(.linear(duration: 1)) {
+											opacityIndicator = 1.0;
+											textTitle = "Share."
+
+										}
+										
+									})
+							)
 					}
+					.overlay(alignment: .bottom, content: {
+						Image(systemName: "arrow.left.and.right.circle")
+							.font(.system(size: 34,weight: .ultraLight))
+							.foregroundColor(.white)
+							.opacity(isAnimation ? 1 : 0)
+							.animation(.easeInOut(duration: 1.7), value: isAnimation)
+							.opacity(opacityIndicator)
+							.offset(y: -17)
+					})
 					
 				}// Center
+				
 				Spacer()
 				
 				ZStack {
 					Capsule()
 						.fill(Color.white.opacity(0.2))
-					 Capsule()
+					Capsule()
 						.fill(Color.white.opacity(0.2))
 						.padding(8)
-						 
+					
 					//HSTACK aqui e para permitir usar propriedade
 					//Spacer empurrar para final
 					HStack {
 						ZStack {
-							Capsule() //capsule não circle,capsule e tipo backgorund
+							Capsule() //capsule e tipo barra
 								.fill(Color("ColorRed"))
-								.frame(width: buttonOffset + 80)
 								.padding(.vertical,4)
+								.frame(width: buttonOffesset + 80)
 							
 						}
 						Spacer()
@@ -88,39 +143,51 @@ struct OnboardingView: View {
 								.font(.system(size: 25))
 								.foregroundColor(.white)
 						}
-						.offset(x: buttonOffset)
+						.offset(x: buttonOffesset)
+						
 						Spacer()
 					}
 					
 				} //Footer
-				.frame(height: 80,alignment: .center)
+				.opacity(isAnimation ? 1 : 0 )
+				.offset(y: isAnimation ? -45 : 0)
+				.animation(.easeInOut(duration: 1), value: isAnimation)
+				.frame(width: buttonWidth,height: 80,alignment: .center)
 				.padding(.horizontal,25)
 				.gesture(
-				   DragGesture()
-						.onChanged { gesture  in
-							 
-							//buttonOffset e para garantir que butão não ultrapassar o
-							//tamanho do capsule
-							if gesture.translation.width > 0 && buttonOffset <= buttonWidth {
-								buttonOffset = gesture.translation.width
+					DragGesture()
+						.onChanged({ gestureEvent in
+							//buttonOffesset <= buttonWidth para garantir que o circulo não ultrapse o
+							//capsule
+							if gestureEvent.translation.width > 0 && buttonOffesset <= buttonWidth {
+								buttonOffesset = gestureEvent.translation.width
 							}
 							
-						}
-						.onEnded{ _ in
-							if buttonOffset > buttonWidth / 2 {
-								   buttonOffset = buttonWidth - 50
-									 handleAppStorage()
-							}else {
-								  buttonOffset = 0
+						
+						})
+						.onEnded({ _ in
+							withAnimation(.easeOut(duration: 0.4)) {
+								if buttonWidth / 2 > buttonOffesset {
+									buttonOffesset = 0
+								}else {
+									buttonOffesset = buttonWidth - 80
+									handleAppStorage()
+								}
 							}
-						}
+							
+						})
+					
 				)
+				
 				
 				
 			}//VSTACK
 			
 		}//ZSTACK
-		
+		//precisas iniciar false e modificar no fluxo para true
+		.onAppear {
+			isAnimation = true
+		}
 		
 	}
 }
