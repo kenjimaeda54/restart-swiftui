@@ -1,10 +1,10 @@
 # Restart
-Projeto relax para praticar animacoes em swfitui
+Projeto relax para praticar animações em swfitui
 
 
 ## Feature
-- Trabalhei com conceitos de textos dinamicos e conforme alterava sofrevia uma transicao na opacidade
-- Para swifui entender que precissa renderizar novamente aquela arvore e preciso identificar com um id
+- Trabalhei com conceitos de textos dinâmicos e conforme alterava ocorre uma transição na opacidade
+- Para swifui entender que precisa renderizar novamente aquela arvore e preciso identificar com um id
 
 
 ```swift
@@ -19,9 +19,9 @@ Projeto relax para praticar animacoes em swfitui
 
 ```
 ##
-- Para gerar animacao da maneira correta primerio inicio uma variavel como falso e no ciclo onApear a torno verdadeiro
-- Abaixo um exemplo como funciona a logica
-- Para garantir que meu status bar acompanhe caso o tema  do celular do usaurio,usei o metood preferredColorScheme
+- Para gerar animação da maneira correta primeiro inicio uma variável como falso e no ciclo onApear a torno verdadeiro
+- Abaixo um exemplo como funciona a lógica
+- Para garantir que   status bar acompanhe  o tema  do celular do usurário, usei o método preferredColorScheme
 
 ```swift
 
@@ -44,10 +44,10 @@ Image(systemName: "arrow.left.and.right.circle")
 ```
 ##
 - Para lidar com efeitos paralax no swiftUI
-- Usei o metodo gesture e dentro dele usei o recurso de abs
-- Drag varia entre positivo e negativo,com abs so pego valor absoluto
-- Exemplo abaixo a imagem sofreara no maximo 150 de distancia para amobs lados
-- Com metodo rotationEffect ao realizar o drag a imagem fica parcialmetne rotacinada
+- Usei o método gesture e dentro dele usei o recurso de abs
+- Drag varia entre positivo e negativo, com abs só pego valor absoluto
+- Exemplo abaixo a imagem sofreara no máximo 150 de distância para ambos lados
+- Com método rotationEffect ao realizar o drag a imagem fica parcialmente rotacionada
 
 
 
@@ -91,9 +91,10 @@ Image(systemName: "arrow.left.and.right.circle")
 ```
 ##
 - Para conseguir usar o Spacer() precisamos de um HSStack ou VStack como no exemplo abaixo
-- Outro fator importante e a diferenca entre Capsule e Circle para possibiitar a barra aumentar conforme arrastava o botao precisa usar capsule
-- Repara que o frame e aumetnado dinamicamente usando buttonOffesset
-- Pegar o tamanho da screen usei o metodo main.bounds.width
+- Outro fator importante e a diferença entre Capsule e Circle 
+- Capsule  cria como se fosse um bacgrkound e o frame pode ser o tamanho da tela, circulo é apenas circulo
+- Repara que o frame desse Capsule  aumenta dinamicamente usando buttonOffesset
+- Pegar o tamanho da screen usei o método main.bounds.width
 
 ```swift
 HStack {
@@ -139,8 +140,8 @@ HStack {
 ```
 
 ##
-- Para relaizar um time out e apos isto concluir uma acao pode usar o metodo asyncAfter
-- No exemplo abaixo apos 3 segundos minha animcao sera verdadeira
+- Para realizar um time out  é apos isto concluir uma ação, pode usar o método asyncAfter
+- No exemplo abaixo apos 3 segundos minha animação sera verdadeira
 
 ```swift
 
@@ -169,8 +170,8 @@ Image("character-2")
 
 ##
 - E possivel aplicar um overlay em cima dos zstack como exemplo abaixo
-- Tambem realizei nesting de opacidades
-- Cada opacidade depdende de uma variavel
+- Também realizei nesting de opacidades
+- Cada opacidade depende de uma variável
 
 ```swift
 
@@ -189,7 +190,7 @@ Image("character-2")
 ```
 
 ##
-- Meotdo para aplicar sound
+- Método para aplicar som
 
 
 
@@ -217,8 +218,8 @@ func playSound(sound: String,type: String) {
 ## 
 - Por fim utilizei o user defaults para mudar entre telas
 - [User defaults](//https://serialcoder-dev.translate.goog/text-tutorials/swiftui/using-the-appstorage-property-wrapper-in-swiftui/?_x_tr_sl=en&_x_tr_tl=pt&_x_tr_hl=pt-BR&_x_tr_pto=sc) em swifui se comparta de maneira diferente 
-- Bascimaente nao se diferencia os metodos get e setter
-- Apenas instancio uma variavel ele recebera o valor casso possua,preciso sempre atribuir um valor casso nao possuir ele assumiara esse valor
+- Basicamente não se diferencia os métodos get e setter
+- Apenas instancio uma variável ele recebera o valor casso possua, preciso sempre atribuir um valor, por que casso não possuir ele assumira esse valor
 
 
 
