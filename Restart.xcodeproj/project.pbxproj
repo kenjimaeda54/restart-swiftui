@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8110565B293ACD3E006F4864 /* PlaySound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8110565A293ACD3E006F4864 /* PlaySound.swift */; };
 		81F2E7D72936B03C00E426BE /* RestartApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F2E7D62936B03C00E426BE /* RestartApp.swift */; };
 		81F2E7D92936B03C00E426BE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F2E7D82936B03C00E426BE /* ContentView.swift */; };
 		81F2E7DB2936B03D00E426BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81F2E7DA2936B03D00E426BE /* Assets.xcassets */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8110565A293ACD3E006F4864 /* PlaySound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaySound.swift; sourceTree = "<group>"; };
 		81F2E7D32936B03C00E426BE /* Restart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Restart.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81F2E7D62936B03C00E426BE /* RestartApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestartApp.swift; sourceTree = "<group>"; };
 		81F2E7D82936B03C00E426BE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -43,6 +45,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		81105659293ACD29006F4864 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				8110565A293ACD3E006F4864 /* PlaySound.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		81F2E7CA2936B03C00E426BE = {
 			isa = PBXGroup;
 			children = (
@@ -64,6 +74,7 @@
 			children = (
 				81F2E7E92936B1E900E426BE /* Info.plist */,
 				81F2E7D62936B03C00E426BE /* RestartApp.swift */,
+				81105659293ACD29006F4864 /* Utilities */,
 				81F2E7EB2936B23F00E426BE /* Views */,
 				81F2E7EA2936B23400E426BE /* Components */,
 				81F2E7E42936B0A000E426BE /* Sounds */,
@@ -181,6 +192,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				81F2E7F12936E7A200E426BE /* CircleGroupView.swift in Sources */,
+				8110565B293ACD3E006F4864 /* PlaySound.swift in Sources */,
 				81F2E7EF2936B28800E426BE /* HomeScreen.swift in Sources */,
 				81F2E7ED2936B27F00E426BE /* OnboardingView.swift in Sources */,
 				81F2E7D92936B03C00E426BE /* ContentView.swift in Sources */,

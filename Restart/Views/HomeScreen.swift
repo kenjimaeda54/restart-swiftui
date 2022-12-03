@@ -12,6 +12,7 @@ struct HomeScreen: View {
 	@State var isAnimation = false
 	
 	func handleAppStorage() {
+		playSound(sound: "success", type: "m4a")
 		onboarding = true;
 	}
 	

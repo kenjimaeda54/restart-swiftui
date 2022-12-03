@@ -15,9 +15,16 @@ struct OnboardingView: View {
 	@State var imageOffesset: CGSize = .zero
 	@State var opacityIndicator = 1.0
 	@State var textTitle = "Share."
+
+	//https://www.hackingwithswift.com/example-code/uikit/how-to-generate-haptic-feedback-with-uifeedbackgenerator
+	//gerar vibracoes 
+	let hapticFeedback = UINotificationFeedbackGenerator()
 	
 	func handleAppStorage() {
+		playSound(sound: "chimeup", type: "mp3")
+		hapticFeedback.notificationOccurred(.success)
 		onboardingView = false
+		
 	}
 	
 	var body: some View {
@@ -34,7 +41,7 @@ struct OnboardingView: View {
 						.font(.system(size: 45, design: .rounded))
 						.transition(.opacity)
 						.id(textTitle) //isso e importante para swiftui tratar como
-							//views diferentes assim meu transition funciona
+					//views diferentes assim meu transition funciona
 					
 					Text("""
  Its not how much we give but how much love we put into giving
@@ -71,7 +78,7 @@ struct OnboardingView: View {
 										//entao com abs ficar positivo
 										if abs(imageOffesset.width) <= 150 {
 											imageOffesset = gestureEvent.translation
-									
+											
 										}
 										
 										withAnimation(.linear(duration: 1)) {
@@ -83,11 +90,11 @@ struct OnboardingView: View {
 								
 									.onEnded({ _ in
 										imageOffesset = .zero;
-																				
+										
 										withAnimation(.linear(duration: 1)) {
 											opacityIndicator = 1.0;
 											textTitle = "Share."
-
+											
 										}
 										
 									})
@@ -163,11 +170,13 @@ struct OnboardingView: View {
 								buttonOffesset = gestureEvent.translation.width
 							}
 							
-						
+							
 						})
 						.onEnded({ _ in
 							withAnimation(.easeOut(duration: 0.4)) {
 								if buttonWidth / 2 > buttonOffesset {
+			
+									hapticFeedback.notificationOccurred(.warning)
 									buttonOffesset = 0
 								}else {
 									buttonOffesset = buttonWidth - 80
@@ -188,6 +197,7 @@ struct OnboardingView: View {
 		.onAppear {
 			isAnimation = true
 		}
+		.preferredColorScheme(.dark) //garanto que a barra estados ira se comportar da maneira correta caso muda para black
 		
 	}
 }
