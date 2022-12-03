@@ -195,9 +195,57 @@ Image("character-2")
 
 ```swift
 
+func playSound(sound: String,type: String) {
+	if let path = Bundle.main.path(forResource: sound, ofType: type) {
+		do {
+			 audioPlayer = try AVAudioPlayer(contentsOf: URL(filePath: path))
+			audioPlayer?.play()
+		}catch {
+			print("I cant play sound")
+		}
+		
+		
+	}
+	
+	
+}
+
 
 
 ```
+
+## 
+- Por fim utilizei o user defaults para mudar entre telas
+- [User defaults](//https://serialcoder-dev.translate.goog/text-tutorials/swiftui/using-the-appstorage-property-wrapper-in-swiftui/?_x_tr_sl=en&_x_tr_tl=pt&_x_tr_hl=pt-BR&_x_tr_pto=sc) em swifui se comparta de maneira diferente 
+- Bascimaente nao se diferencia os metodos get e setter
+- Apenas instancio uma variavel ele recebera o valor casso possua,preciso sempre atribuir um valor casso nao possuir ele assumiara esse valor
+
+
+
+```swift
+	@AppStorage("onboarding") var onboardingView: Bool = true
+	
+	var body: some View {
+		
+		ZStack {
+			
+			if (onboardingView) {
+				OnboardingView()
+			}else {
+				HomeScreen()
+			}
+			
+		}//: ZStack
+		
+		
+	}
+
+
+
+```
+
+
+
 
 
 
